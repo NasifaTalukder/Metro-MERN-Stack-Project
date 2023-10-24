@@ -6,6 +6,7 @@ import {Account} from '../components/Account';
 import {Error} from "../components/Error"
 import { Contact } from './Contact';
 import { Cart } from './Cart';
+import ProductAdd from './Dashboard/productAdd';
 import {
     BrowserRouter as Router,
     Route,
@@ -25,6 +26,10 @@ const RouterPage = () => {
     <Route path='/404' element={<Error/>}/>
     <Route path='/Contact' element={<Contact/>}/>
     <Route path='/Cart' element={<Cart/>}/>
+    <Route path='/productadd' element={<ProductAdd/>}/>
+    <Route path='*' element={<Error/>}/>
+
+
 
  </Routes>
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import MenuSec from './components/Homepage/MenuSec';
 import MenuBottom from './components/Homepage/MenuBottom';
@@ -25,6 +25,8 @@ import HelpandSupSec from './components/Homepage/HelpandSupSec';
 import CopyRightSec from './components/Homepage/CopyRightSec';
 import SocialIcons from './components/Homepage/SocialIcons';
 import PaymentMethod from './components/Homepage/PaymentMethod';
+import { getProduct } from './helper/helper';
+
 
 
 
@@ -32,6 +34,20 @@ import PaymentMethod from './components/Homepage/PaymentMethod';
 
 
 function App() {
+
+  let [product,setProduct]=useState([]);
+
+const dataShowHandler = async () => {
+  let ShowDb = await getProduct();
+  setProduct(ShowDb.products);
+  return ShowDb
+    // console.log(ShowDb.products);
+   };
+  useEffect(()=>{
+    dataShowHandler();
+  },[]);
+
+  console.log(product)
 
   return (
     <>
@@ -64,16 +80,22 @@ function App() {
           {/* ------Game Controller Comp---- */}
           <GameControllerSec/>
           <div className='flex flex-wrap space-x-6 ml-6 h-96'>
+            {/* -------Using map for Show data in Webite---- */}
+          {
+          product.map((prodD)=>(
+            <KeyboardComp data ={prodD}/>
+            ))}
+
            {/* ------KeyBoard Comp---------- */}
-           <KeyboardComp/>
+           {/* <KeyboardComp/> */}
            {/* ------------Speaker Comp------------ */}
-          <SpeakerComp/>
+          {/* <SpeakerComp/> */}
             </div>           
         <div className='flex flex-wrap space-x-6 ml-[660px] mt-[-370px]'>
           {/* ------------HeadPhoneComp-------- */}
-          <HeadPhoneComp/>
+          {/* <HeadPhoneComp/> */}
           {/* -------------UltraLaserComp------------- */}
-          <UltraLaserComp/>
+          {/* <UltraLaserComp/> */}
         </div>
         <div/>
         </div>         

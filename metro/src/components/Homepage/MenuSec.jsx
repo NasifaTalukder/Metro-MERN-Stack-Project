@@ -1,23 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import darkLogo from "../../assets/./HomePagePic/logo-dark.png";
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import SearchIcon from '@mui/icons-material/Search';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+
 import {
   Link,
 } from "react-router-dom";
-import { getStudent } from '../../helper/helper';
+import { getProduct} from '../../helper/helper';
 
 
 const MenuSec = () => {
-
-  const dataShowHandler = async () => {
-    let DbShow=await getStudent();
-    console.log(DbShow);
-   };
-
+// --------Data show when OnClick on My Account Route----
+//   const dataShowHandler = async () => {
+//     let DbShow=await getProduct();
+//     console.log(DbShow.products);
+//    };
+// useEffect(()=>{
+//   dataShowHandler();
+// },[]);
   return (
     <>
      <div className='flex flex-wrap justify-between pt-5 overflow-hidden'>
@@ -29,10 +32,10 @@ const MenuSec = () => {
               <ul className='flex flex-wrap space-x-2 text-medium font-medium  mt-3'>
                 <li><Link to="/">Home<KeyboardArrowDownIcon fontSize='small'/></Link></li>
                 <li><Link to="/Shop">Shop<KeyboardArrowDownIcon fontSize='small'/></Link></li>
-                <li><Link to="/Cart">Cart<KeyboardArrowDownIcon fontSize='small'/></Link></li>
+                <li><Link to="/productadd">Cart<KeyboardArrowDownIcon fontSize='small'/></Link></li>
                 <li><Link to="/CheckOut">Checkout<KeyboardArrowDownIcon fontSize='small'/></Link></li>
                 <li><Link to="/404">Error<KeyboardArrowDownIcon fontSize='small'/></Link></li>
-                <li onClick={dataShowHandler}><Link to="/My Account">My Account<KeyboardArrowDownIcon fontSize='small'/></Link></li>
+                <li><Link to="/My Account">My Account<KeyboardArrowDownIcon fontSize='small'/></Link></li>
                 <li><Link to="/Contact">Contact</Link></li>
               </ul>
             </div>

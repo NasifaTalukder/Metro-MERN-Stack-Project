@@ -27,8 +27,11 @@ const productSchema=new mongoose.Schema({
     },
     productDics:{
         type:Number,
+        require:false
 
     }
 
 })
 module.exports=mongoose.model.Products || mongoose.model('product',productSchema)
+
+
