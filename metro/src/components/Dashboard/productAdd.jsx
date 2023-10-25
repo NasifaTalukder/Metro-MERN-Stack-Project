@@ -16,9 +16,11 @@ function ProductAdd() {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    addProduct(input)
+    addProduct(input);
+     productName.value=" ";
     // console.log(input);
   };
+  
 
   return (
     <>

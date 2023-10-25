@@ -11,3 +11,9 @@ export async function addProduct(prodData) {
   const { data } = await axois.post("/productAdd", prodData );
   return data;
 }
+
+export async function deleteProduct(id) {
+  // console.log(id)
+  const data  = await axois.delete(`/${id}`);
+  return data;
+}

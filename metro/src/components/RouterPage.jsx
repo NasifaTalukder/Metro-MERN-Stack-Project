@@ -7,11 +7,15 @@ import {Error} from "../components/Error"
 import { Contact } from './Contact';
 import { Cart } from './Cart';
 import ProductAdd from './Dashboard/productAdd';
+import Dashboard from './Dashboard/Dashboard';
 import {
     BrowserRouter as Router,
     Route,
     Routes
   } from "react-router-dom";
+import ActionSystem from './Dashboard/ActionSystem';
+
+
 
 
 const RouterPage = () => {
@@ -26,8 +30,10 @@ const RouterPage = () => {
     <Route path='/404' element={<Error/>}/>
     <Route path='/Contact' element={<Contact/>}/>
     <Route path='/Cart' element={<Cart/>}/>
-    <Route path='/productadd' element={<ProductAdd/>}/>
+    <Route path='/dashboard' element={<Dashboard/>}/>
     <Route path='*' element={<Error/>}/>
+    <Route path='/productAdd' element={<ProductAdd/>}/>
+    <Route path='/ActionSystem' element={<ActionSystem/>}/>
 
 
 
