@@ -4,6 +4,9 @@ import { deleteProduct, getProduct } from "../../helper/helper";
 
 function ActionSystem() {
   let [products, setProducts] = useState([]);
+  useEffect(() => {
+    dataShowHandler();
+  }, []);
 
   const dataShowHandler = async () => {
     let ShowDb = await getProduct();
@@ -11,9 +14,6 @@ function ActionSystem() {
     return ShowDb;
     // console.log(ShowDb.products);
   };
-  useEffect(() => {
-    dataShowHandler();
-  }, []);
   // console.log(products)
   let deleteHandler = (id) => {
     deleteProduct(id);

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {addProduct }from "../../helper/helper"
+import { addProduct } from "../../helper/helper";
 
 function ProductAdd() {
   const allData = {
@@ -8,19 +8,25 @@ function ProductAdd() {
     productWeight: "",
     productPrice: "",
     productDics: "",
+    productImg:""
   };
   const [input, setInput] = useState();
-
+  // --------Handler for Input product details-------
   const inputHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
+  };
+  // -----------Handler for input image----
+  const ImginputHandler = async (e) => {
+    let imgBase64= await imagConvertToBase64(e.target.files[0] )
+    setInput({ ...input, [e.target.name]: imgBase64 });
+    //  console.log(imgBase64)
   };
   const submitHandler = (e) => {
     e.preventDefault();
     addProduct(input);
-     productName.value=" ";
+    // setInput(" ");
     // console.log(input);
   };
-  
 
   return (
     <>
@@ -77,6 +83,17 @@ function ProductAdd() {
           />
           <br />
           <br />
+          <label htmlFor="">Your Image =</label>
+          <input
+            type="file"
+            name="productImg"
+            accept=".png, .jpg, .jpeg"
+            className="ml-3"
+            onChange={ImginputHandler}
+          />
+          <br />
+          <br />
+
           <button type="submit" className="px-5 py-3 bg-green-700 text-white">
             Add Product
           </button>
@@ -87,3 +104,17 @@ function ProductAdd() {
 }
 
 export default ProductAdd;
+
+
+function imagConvertToBase64(file){
+   return new Promise((resolve,reject)=>{
+    const fileReader = new FileReader()
+    fileReader.readAsDataURL(file);
+    fileReader.onload=()=>{
+      resolve(fileReader.result)
+    };
+    fileReader.onerror=(error)=>{
+      reject(error)
+    };
+   })
+}

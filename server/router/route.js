@@ -19,7 +19,7 @@ router.get("/", async (req, res) => {
 
 // ----------------Product Add Using POST Method-----------
 router.post("/productAdd", async (req, res) => {
-  const { productName, productType, productDics, productWeight, productPrice } =
+  const { productName, productType, productDics, productWeight, productPrice,productImg } =
     req.body;
   if (!productName || !productType || !productWeight || !productPrice) {
     return res.status(422).json({ error: "Please Fill All The Data..." });
@@ -30,6 +30,7 @@ router.post("/productAdd", async (req, res) => {
     productDics,
     productWeight,
     productPrice,
+    productImg,
   });
   await product.save();
   res.status(200).json({ message: "product Added Successfully....." });

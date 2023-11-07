@@ -28,7 +28,10 @@ const productSchema=new mongoose.Schema({
     productDics:{
         type:Number,
         require:false
-
+    },
+    productImg:{
+        type:String,
+        require:true
     }
 
 })
