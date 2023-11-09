@@ -1,5 +1,7 @@
 import React from "react";
-
+import {
+  Link
+} from "react-router-dom";
 function Dashboard() {
   return (
     <>
@@ -12,18 +14,18 @@ function Dashboard() {
           </u>
         </div>
         <div className="mt-[80px] ml-[220px] flex flex-wrap space-x-4">
-          <a
-            href="/productAdd"
+          <Link
+            to="/productAdd"
             className="px-5 py-3 bg-green-900 text-white border border-red-500 rounded-sm "
           >
             Product Add
-          </a>
-          <a
-            href="/ActionSystem"
+          </Link>
+          <Link
+            to="/ActionSystem"
             className="px-5 py-3 bg-orange-500 text-white border border-red-500 rounded-sm "
           >
             All Products
-          </a>
+          </Link>
         </div>
       </div>
     </>

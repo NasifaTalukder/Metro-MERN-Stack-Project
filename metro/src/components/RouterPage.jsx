@@ -14,6 +14,7 @@ import {
     Routes
   } from "react-router-dom";
 import ActionSystem from './Dashboard/ActionSystem';
+import UpdateProduct from './Dashboard/UpdateProduct';
 
 
 
@@ -34,6 +35,7 @@ const RouterPage = () => {
     <Route path='*' element={<Error/>}/>
     <Route path='/productAdd' element={<ProductAdd/>}/>
     <Route path='/ActionSystem' element={<ActionSystem/>}/>
+    <Route path='/updateProduct' element={<UpdateProduct/>}/>
 
 
 

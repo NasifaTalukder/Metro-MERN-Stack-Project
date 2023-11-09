@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
 import "../../App.css";
-import { deleteProduct, getProduct } from "../../helper/helper";
+import { addProduct, deleteProduct, getProduct } from "../../helper/helper";
+import { Link } from "react-router-dom";
+import { ProductStore } from "../../store/StoreData";
 
 function ActionSystem() {
   let [products, setProducts] = useState([]);
+  const AddProduct=ProductStore((state)=>state.AddProduct)
+  
+
+
   useEffect(() => {
     dataShowHandler();
   }, []);
-
+// -----------Data Show----------
   const dataShowHandler = async () => {
     let ShowDb = await getProduct();
     setProducts(ShowDb.products);
@@ -15,12 +21,18 @@ function ActionSystem() {
     // console.log(ShowDb.products);
   };
   // console.log(products)
-  let deleteHandler = (id) => {
+  // -------------Data Delete----------
+  const deleteHandler = (id) => {
     deleteProduct(id);
     dataShowHandler();
     setProducts(products.filter((product)=>product.id !== id));
     // console.log(id)
+// -------------Data Update-------------
   };
+  let updateHandler = (id)=>{
+    AddProduct(products.filter((product)=>product._id===id))
+  };
+  // console.log(productId)
   return (
     <div>
       <u>
@@ -50,7 +62,7 @@ function ActionSystem() {
                 <td>{productsData.productDics}</td>
                 <td>
                   <button className="px-5 py-2 bg-purple-600 text-white text-[20px] rounded-sm">
-                    Edit
+                   <Link to="/updateProduct" onClick={()=>updateHandler(productsData._id)}>Edit</Link> 
                   </button>
                   <button
                     className="px-5 py-2 bg-red-700 text-white text-[20px] rounded-sm ml-[10px]"

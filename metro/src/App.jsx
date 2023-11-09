@@ -27,12 +27,6 @@ import SocialIcons from './components/Homepage/SocialIcons';
 import PaymentMethod from './components/Homepage/PaymentMethod';
 import { getProduct } from './helper/helper';
 
-
-
-
-
-
-
 function App() {
 
   let [product,setProduct]=useState([]);
@@ -103,13 +97,13 @@ const dataShowHandler = async () => {
 
       <div className='flex flex-wrap space-x-5 mt-5'>
       {/* -----------Bluetooth Comp--------- */}
-      <BluetoothComp/>
+      {/* <BluetoothComp/> */}
       {/* -------------Gadgets Comp------------- */}
-      <GadgetsComp/>
+      {/* <GadgetsComp/> */}
       {/* ----------Watch Comp------------ */}
-      <WatchComp/>
+      {/* <WatchComp/> */}
       {/* -----------GraphicsCard Comp----------- */}
-      <GraphicsCardComp/>
+      {/* <GraphicsCardComp/> */}
           </div>
       </div>
 
