@@ -17,3 +17,8 @@ export async function deleteProduct(id) {
   const data  = await axois.delete(`/${id}`);
   return data;
 }
+
+export async function updateProduct(updateData) {
+  const data  = await axois.put('/updateProduct',updateData);
+  return data;
+}

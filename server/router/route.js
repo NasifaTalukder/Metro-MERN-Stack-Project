@@ -19,8 +19,14 @@ router.get("/", async (req, res) => {
 
 // ----------------Product Add Using POST Method-----------
 router.post("/productAdd", async (req, res) => {
-  const { productName, productType, productDics, productWeight, productPrice,productImg } =
-    req.body;
+  const {
+    productName,
+    productType,
+    productDics,
+    productWeight,
+    productPrice,
+    productImg,
+  } = req.body;
   if (!productName || !productType || !productWeight || !productPrice) {
     return res.status(422).json({ error: "Please Fill All The Data..." });
   }
@@ -35,11 +41,41 @@ router.post("/productAdd", async (req, res) => {
   await product.save();
   res.status(200).json({ message: "product Added Successfully....." });
 });
+// ------------product Delete using Delete method-------
 
 router.delete("/:id", async (req, res) => {
   // console.log(req.params.id)
   let deleteData = await productModel.deleteOne({ _id: req.params.id });
   res.status(200).send("Product Deleted..");
+});
+// ------------product Update using PUT method-------
+router.put("/updateProduct", async (req, res) => {
+  let {
+    productId,
+    productName,
+    productType,
+    productDics,
+    productWeight,
+    productPrice,
+    productImg,
+  } = req.body;
+  productModel
+    .updateOne(
+      { _id: productId },
+      {
+        productName,
+        productType,
+        productDics,
+        productWeight,
+        productPrice,
+        productImg,
+      }
+    )
+    .then(() => {
+      res.status(200).send({message:"product Data Updated..."})
+    }).catch((error)=>{
+      res.status(500).send({error:"Error"})
+    })
 });
 
 module.exports = router;

@@ -49,6 +49,7 @@ function ActionSystem() {
               <th>Category</th>
               <th>Price</th>
               <th>Discount</th>
+              <th>Image</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -60,6 +61,7 @@ function ActionSystem() {
                 <td>{productsData.productType}</td>
                 <td>{productsData.productPrice}</td>
                 <td>{productsData.productDics}</td>
+                <td><img src={productsData.productImg} alt="" className="w-[100px] h-auto"/></td>
                 <td>
                   <button className="px-5 py-2 bg-purple-600 text-white text-[20px] rounded-sm">
                    <Link to="/updateProduct" onClick={()=>updateHandler(productsData._id)}>Edit</Link> 

@@ -10,7 +10,7 @@ function ProductAdd() {
     productDics: "",
     productImg:""
   };
-  const [input, setInput] = useState();
+  const [input, setInput] = useState(allData);
   // --------Handler for Input product details-------
   const inputHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
@@ -93,8 +93,11 @@ function ProductAdd() {
           />
           <br />
           <br />
+          <img src={input.productImg} alt="" className="w-[150px] h-auto ml-3" />
+          <br />
+          <br />
 
-          <button type="submit" className="px-5 py-3 bg-green-700 text-white">
+          <button type="submit" className="px-5 py-3 bg-green-700 text-white ml-3">
             Add Product
           </button>
         </div>
