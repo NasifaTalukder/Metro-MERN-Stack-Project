@@ -36,7 +36,7 @@ const LoginSec = () => {
     <>
     <div>
                    <h1 className='text-3xl font-semibold'>Login</h1>
-                   <div className='w-[620px] h-[420px] border-2 border-slate-200 p-5 rounded mt-7'>
+                   <div className='w-[620px] h-[600px] border-2 border-slate-200 p-5 rounded mt-7'>
                     <form onSubmit={submitHandle}>
                     <div>
                     <label className='text-base font-sans font-semibold text-slate-600'>Username or email address *</label>

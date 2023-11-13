@@ -1,6 +1,8 @@
 const Router = require("express");
 const router = Router();
 const productModel = require("../model/productModel");
+const userModel = require("../model/userModel");
+const bcrypt = require("bcrypt");
 
 // ------product View Request By GET Method------
 router.get("/", async (req, res) => {
@@ -72,10 +74,51 @@ router.put("/updateProduct", async (req, res) => {
       }
     )
     .then(() => {
-      res.status(200).send({message:"product Data Updated..."})
-    }).catch((error)=>{
-      res.status(500).send({error:"Error"})
+      res.status(200).send({ message: "product Data Updated..." });
     })
+    .catch((error) => {
+      res.status(500).send({ error: "Error" });
+    });
+});
+
+// --------User Account Data-------
+// {
+//   "name":"Nasifa Talukder",
+//   "userName":"DevNasifa",
+//   "email":"nasifatldr36@gmail.com",
+//   "password":"123456",
+//   "profile":"fdsghadshds"
+
+// }
+// --------------User Account Registration-----------
+router.post("/signup", async (req, res) => {
+  const { name, userName, email, password, profile } = req.body;
+
+  if (!name || !userName || !email || !password) {
+    return res.status(422).json({ error: "Please Fill All The Data..." });
+  }
+  let existUserName = await userModel.findOne({ userName });
+  if (existUserName) {
+    return res.status(422).json({ error: "User Name Already Exist Here..." });
+  }
+  let existEmail = await userModel.findOne({ email });
+  if (existEmail) {
+    return res.status(422).json({ error: "User Email Already Exist Here..." });
+  }
+  const hashPassword = await bcrypt.hash(password, 10);
+  const user = new userModel({
+    name,
+    userName,
+    email,
+    password: hashPassword,
+    profile: profile || "",
+  });
+ user.save();
+  res.status(200).json({ message: "Registration Successfully Done..." });
+});
+// --------------User Account Login-------
+router.post("/signin", async (req, res) => {
+  res.status(200).json({ message: "Login Successfully Done..." });
 });
 
 module.exports = router;

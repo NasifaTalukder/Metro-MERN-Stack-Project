@@ -27,7 +27,7 @@ const Account = () => {
         </div>
 
         <div className='w-[1300px] m-auto'>
-          <div className='h-[550px]'>   
+          <div className='h-[700px]'>   
             <div className='mt-24 flex flex-wrap space-x-14'>
                 {/* -----------Login Section------------- */}
                 <LoginSec/>
