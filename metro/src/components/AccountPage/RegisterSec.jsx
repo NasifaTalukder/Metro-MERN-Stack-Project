@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { registration } from "../../helper/helper";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+// const notify = () => toast("hfhghjg");
+
 
 
 const RegisterSec = () => {
+ 
   const userData = {
     name: "",
     userName: "",
@@ -21,16 +26,22 @@ const RegisterSec = () => {
     setInput({ ...input, [e.target.name]: imgBase64 });
     //  console.log(imgBase64)
   };
-  const submitHandler = (e) => {
+  const submitHandler = async(e) => {
     e.preventDefault();
-    registration(input)
-    // console.log(input);
+     let SignRes=await registration(input);
+     if(SignRes.error){
+      toast.error(SignRes.error.error,{
+        position: toast.POSITION.BOTTOM_RIGHT,
+        theme: "colored",
+      });
+     }
+     
   };
   return (
     <>
       <div>
         <h1 className="text-3xl font-semibold">Register</h1>
-        <div className="w-[620px] h-[600px] border-2 border-slate-200 p-5 rounded mt-7">
+        <div className="w-[620px] h-[620px] border-2 border-slate-200 p-5 rounded mt-7">
           <form onSubmit={submitHandler}>
             <div>
               <label className="text-base font-sans font-semibold text-slate-600">
@@ -92,19 +103,20 @@ const RegisterSec = () => {
               onChange={ImginputHandler }
               className="ml-5" />
             </div>
-            <div className="mt-4">
+            <div className="">
               <img src={input.profile} alt="" className="w-[150px] h-auto" />
             </div>
             </div>
            
 
-            <div className="mt-[-50px]">
+            <div className="mt-20">
               <button
                 onClick={submitHandler}
                 className="font-sans text-white bg-black pl-12 pr-12 pt-3 pb-3 rounded font-semibold"
               >
                 REGISTER
               </button>
+              <ToastContainer />
             </div>
           </form>
         </div>

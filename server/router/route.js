@@ -95,15 +95,15 @@ router.post("/signup", async (req, res) => {
   const { name, userName, email, password, profile } = req.body;
 
   if (!name || !userName || !email || !password) {
-    return res.status(422).json({ error: "Please Fill All The Data..." });
+    return res.status(422).send({ error: "Please Fill All The Data..." });
   }
   let existUserName = await userModel.findOne({ userName });
   if (existUserName) {
-    return res.status(422).json({ error: "User Name Already Exist Here..." });
+    return res.status(422).send({ error: "User Name Already Exist Here..." });
   }
   let existEmail = await userModel.findOne({ email });
   if (existEmail) {
-    return res.status(422).json({ error: "User Email Already Exist Here..." });
+    return res.status(422).send({ error: "User Email Already Exist Here..." });
   }
   const hashPassword = await bcrypt.hash(password, 10);
   const user = new userModel({
@@ -114,11 +114,17 @@ router.post("/signup", async (req, res) => {
     profile: profile || "",
   });
  user.save();
-  res.status(200).json({ message: "Registration Successfully Done..." });
+  res.status(200).send({ message: "Registration Successfully Done..." });
 });
 // --------------User Account Login-------
 router.post("/signin", async (req, res) => {
-  res.status(200).json({ message: "Login Successfully Done..." });
+  const{userName,password}=req.body;
+  if(!userName || !password){
+    return res.status(422).send({error:"Please Fill All The Required..."})
+  };
+  const exitUser=await userModel.findOne({userName});
+  console.log(exitUser)
+  // res.status(200).json({ message: "Login Successfully Done..." });
 });
 
 module.exports = router;

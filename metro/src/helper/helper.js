@@ -23,6 +23,31 @@ export async function updateProduct(updateData) {
 }
 // ----------User Registration--------
 export async function registration(registerData) {
-  const { data } = await axois.post("/signup", registerData );
-  return data;
+  try {
+    const { data } = await axois.post("/signup", registerData );
+  return Promise.resolve(data);
+  } catch (error) {
+    if(error.response){
+      const{status,data}=error.response;
+      if(status==422){
+        return {error:data}
+      }
+
+      return {error:data};
+    }else if(error.request){
+      return{error:"No Response Recieved.."}
+    }else{
+      return {error:error.message}
+    }
+  }
+}
+
+// -------------User Login--------------
+export async function login(loginData) {
+  try {
+    const resData  = await axois.post("/signin",loginData);
+    return Promise.resolve(resData);
+  } catch (error) {
+    return error;
+  }
 }
