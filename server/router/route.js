@@ -3,7 +3,9 @@ const router = Router();
 const productModel = require("../model/productModel");
 const userModel = require("../model/userModel");
 const bcrypt = require("bcrypt");
-
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
+const SECRET_KEY = process.env.SECRET_KEY;
 // ------product View Request By GET Method------
 router.get("/", async (req, res) => {
   const dataOfProduct = await productModel.find({});
@@ -113,17 +115,37 @@ router.post("/signup", async (req, res) => {
     password: hashPassword,
     profile: profile || "",
   });
- user.save();
+  user.save();
   res.status(200).send({ message: "Registration Successfully Done..." });
 });
 // --------------User Account Login-------
 router.post("/signin", async (req, res) => {
-  const{userName,password}=req.body;
-  if(!userName || !password){
-    return res.status(422).send({error:"Please Fill All The Required..."})
-  };
-  const exitUser=await userModel.findOne({userName});
-  console.log(exitUser)
+  const { userName, password } = req.body;
+  if (!userName || !password) {
+    return res.status(422).send({ error: "Please Fill All The Required..." });
+  }
+  const exitUser = await userModel.findOne({ userName });
+  if (!exitUser) {
+    return res.status(422).send({ error: "User Not Found.." });
+  } else {
+    const matchPass = await bcrypt.compare(password, exitUser.password);
+    if (!matchPass)
+      return res.status(400).send({ error: "Password not match" });
+
+    const token = jwt.sign(
+      { userId: exitUser._id, userName: exitUser.userName },
+      SECRET_KEY,
+      { expiresIn: "1h" }
+    );
+    res
+      .status(200)
+      .send({
+        message: "Login Successfully Done...",
+        userName: exitUser.userName,
+        token,
+      });
+  }
+
   // res.status(200).json({ message: "Login Successfully Done..." });
 });
 

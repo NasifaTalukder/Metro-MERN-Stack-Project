@@ -12,16 +12,21 @@ const LoginSec = () => {
   const inputHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
-// ---------------------Submit Data-----------
-  const submitHandler = (e) => {
+// ---------------------Submit Data---------------
+  const submitHandler = async(e) => {
     e.preventDefault();
-    login(input);
+   let {token}=await login(input);
+   localStorage.setItem('token',token)
   };
+  // -------------------LOG OUT Handler-------------
+   const logOutHandler=()=>{
+    localStorage.removeItem("token")
+   }
   return (
     <>
       <div>
         <h1 className="text-3xl font-semibold">Login</h1>
-        <div className="w-[620px] h-[620px] border-2 border-slate-200 p-5 rounded mt-7">
+        <div className="w-[620px] h-[650px] border-2 border-slate-200 p-5 rounded mt-7">
           <form onSubmit={submitHandler}>
             <div>
               <label className="text-base font-sans font-semibold text-slate-600">
@@ -58,12 +63,19 @@ const LoginSec = () => {
                 Remember me
               </label>
             </div>
-            <div className="mt-6">
+            <div className="mt-6 flex flex-wrap justify-between">
               <button
                 onClick={submitHandler}
                 className="font-sans text-white bg-black pl-10 pr-10 pt-3 pb-3 rounded font-semibold"
               >
                 LOG IN
+              </button>
+
+              <button
+                onClick={()=>logOutHandler()}
+                className="font-sans text-white bg-black pl-10 pr-10 pt-3 pb-3 rounded font-semibold"
+              >
+                LOG OUT
               </button>
             </div>
             <div className="mt-5">

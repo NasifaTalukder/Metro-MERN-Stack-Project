@@ -2,7 +2,13 @@ import React from "react";
 import {
   Link
 } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 function Dashboard() {
+  let tokenData = localStorage.getItem('token');
+  // let decode = jwtDecode(tokenData)
+  // console.log(decode)
+  let {userName}=jwtDecode(tokenData);
+  console.log(userName)
   return (
     <>
       <div className="w-[700px] m-auto">
@@ -13,6 +19,12 @@ function Dashboard() {
             </h1>
           </u>
         </div>
+
+        <div>
+       <p className="text-center">User - {userName}</p>
+        </div>
+
+
         <div className="mt-[80px] ml-[220px] flex flex-wrap space-x-4">
           <Link
             to="/productAdd"

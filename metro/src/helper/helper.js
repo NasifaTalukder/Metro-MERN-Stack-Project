@@ -32,7 +32,6 @@ export async function registration(registerData) {
       if(status==422){
         return {error:data}
       }
-
       return {error:data};
     }else if(error.request){
       return{error:"No Response Recieved.."}
@@ -45,8 +44,8 @@ export async function registration(registerData) {
 // -------------User Login--------------
 export async function login(loginData) {
   try {
-    const resData  = await axois.post("/signin",loginData);
-    return Promise.resolve(resData);
+    const {data}  = await axois.post("/signin",loginData);
+    return Promise.resolve(data);
   } catch (error) {
     return error;
   }

@@ -35,13 +35,19 @@ const RegisterSec = () => {
         theme: "colored",
       });
      }
+     else{
+      toast.success(SignRes.message,{
+        position: toast.POSITION.BOTTOM_RIGHT,
+        theme: "colored",
+      });
+     }
      
   };
   return (
     <>
       <div>
         <h1 className="text-3xl font-semibold">Register</h1>
-        <div className="w-[620px] h-[620px] border-2 border-slate-200 p-5 rounded mt-7">
+        <div className="w-[620px] h-[650px] border-2 border-slate-200 p-5 rounded mt-7">
           <form onSubmit={submitHandler}>
             <div>
               <label className="text-base font-sans font-semibold text-slate-600">
@@ -109,7 +115,7 @@ const RegisterSec = () => {
             </div>
            
 
-            <div className="mt-20">
+            <div className="mt-4">
               <button
                 onClick={submitHandler}
                 className="font-sans text-white bg-black pl-12 pr-12 pt-3 pb-3 rounded font-semibold"
