@@ -117,7 +117,7 @@ const UpdateProduct = () => {
           <br />
 
           <button type="submit" className="px-5 py-3 bg-green-700 text-white">
-            Add Product
+            Update Product
           </button>
         </div>
       </form>

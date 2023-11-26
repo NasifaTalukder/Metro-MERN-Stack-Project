@@ -3,12 +3,15 @@ import {
   Link
 } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import useFetchHook from "../../Hooks/FetchHook";
 function Dashboard() {
-  let tokenData = localStorage.getItem('token');
-  // let decode = jwtDecode(tokenData)
-  // console.log(decode)
-  let {userName}=jwtDecode(tokenData);
-  console.log(userName)
+
+
+  // let tokenData = localStorage.getItem('token');
+  // // let decode = jwtDecode(tokenData)
+  // // console.log(decode)
+  // let {userName}=jwtDecode(tokenData);
+  // console.log(userName)
   return (
     <>
       <div className="w-[700px] m-auto">
@@ -21,7 +24,7 @@ function Dashboard() {
         </div>
 
         <div>
-       <p className="text-center">User - {userName}</p>
+       {/* <p className="text-center">User </p> */}
         </div>
 
 

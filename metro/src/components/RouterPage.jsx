@@ -15,7 +15,8 @@ import {
   } from "react-router-dom";
 import ActionSystem from './Dashboard/ActionSystem';
 import UpdateProduct from './Dashboard/UpdateProduct';
-
+import ProfilePage from './AccountPage/ProfilePage';
+import PrivateRoute from './PrivateRoutePage/PrivateRoute';
 
 
 
@@ -28,14 +29,18 @@ const RouterPage = () => {
     <Route path='/Shop' element={<Shop/>}/>
     <Route path='/CheckOut' element={<CheckOut/>}/>
     <Route path='/My Account' element={<Account/>}/>
+    <Route path='/Profile' element={<ProfilePage/>}/>
     <Route path='/404' element={<Error/>}/>
     <Route path='/Contact' element={<Contact/>}/>
     <Route path='/Cart' element={<Cart/>}/>
-    <Route path='/dashboard' element={<Dashboard/>}/>
+
     <Route path='*' element={<Error/>}/>
     <Route path='/productAdd' element={<ProductAdd/>}/>
     <Route path='/ActionSystem' element={<ActionSystem/>}/>
     <Route path='/updateProduct' element={<UpdateProduct/>}/>
+    {/* <Route path='dashboard' element={<PrivateRoute/>}> */}
+    <Route path='/dashboard' element={<Dashboard/>}/>
+    {/* </Route> */}
 
 
 

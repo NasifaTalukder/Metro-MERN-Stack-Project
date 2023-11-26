@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
 const app=express();
-const route = require('./router/route');
-const Connection  = require('./database/databaseConnect');
-const cors = require("cors");
+import router from './router/route.js';
+import Connection from './database/databaseConnect.js';
+import cors from "cors";
 app.use(express.json())
 app.use(cors())
 // ------Get Request-----
@@ -11,7 +11,7 @@ app.get('/',(req,res)=>{
 })
 
 // -----Api Of product-------
-app.use('/productApi',route);
+app.use('/productApi',router);
 
 const port =8080;
 

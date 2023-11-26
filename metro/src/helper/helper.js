@@ -1,5 +1,5 @@
 import axois from "./api";
-
+import {jwtDecode} from "jwt-decode"
 // --------Get Product-------
 export async function getProduct() {
   const { data } = await axois.get("/");
@@ -49,4 +49,11 @@ export async function login(loginData) {
   } catch (error) {
     return error;
   }
+}
+
+// ---------User Data Get from Token--------------
+export async function getUserName(){
+  const token = localStorage.getItem("token");
+  const decodeToken = jwtDecode(token);
+  return decodeToken;
 }

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { login } from "../../helper/helper";
+import { ProductStore } from "../../store/StoreData";
 
 const LoginSec = () => {
-
+const authStore = ProductStore((state)=>state.setAuth);
+// const auth = ProductStore((state)=>state.auth);
+// console.log(auth)
   const userData = {
     userName: "",
     password: ""
@@ -16,12 +19,13 @@ const LoginSec = () => {
   const submitHandler = async(e) => {
     e.preventDefault();
    let {token}=await login(input);
-   localStorage.setItem('token',token)
+   localStorage.setItem('token',token);
+   authStore(token);
   };
-  // -------------------LOG OUT Handler-------------
-   const logOutHandler=()=>{
-    localStorage.removeItem("token")
-   }
+  // // -------------------LOG OUT Handler-------------
+  //  const logOutHandler=()=>{
+  //   localStorage.removeItem("token")
+  //  }
   return (
     <>
       <div>
@@ -63,20 +67,20 @@ const LoginSec = () => {
                 Remember me
               </label>
             </div>
-            <div className="mt-6 flex flex-wrap justify-between">
+            <div className="mt-8 flex flex-wrap justify-between">
               <button
                 onClick={submitHandler}
                 className="font-sans text-white bg-black pl-10 pr-10 pt-3 pb-3 rounded font-semibold"
               >
-                LOG IN
+              LOG IN 
               </button>
 
-              <button
+              {/* <button
                 onClick={()=>logOutHandler()}
                 className="font-sans text-white bg-black pl-10 pr-10 pt-3 pb-3 rounded font-semibold"
               >
                 LOG OUT
-              </button>
+              </button> */}
             </div>
             <div className="mt-5">
               <p className="text-lg font-sans text-slate-600">

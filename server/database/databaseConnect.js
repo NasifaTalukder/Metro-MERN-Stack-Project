@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 
 async function connectionHelper(){
@@ -6,4 +6,4 @@ async function connectionHelper(){
   return mdb;
 }
 
-module.exports =connectionHelper;
+export default connectionHelper;
